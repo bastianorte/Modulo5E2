@@ -1,7 +1,11 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 
+
+
 const Navbar: React.FC = () => {
+
+
+
   return (
     <div className="bg-primary ">
       <div className="container mx-auto px-2 sm:px-6 lg:px-8 bg-primary text-right">
@@ -30,7 +34,16 @@ const Navbar: React.FC = () => {
                   <NavLink to="/Contacto" style={{ color: "#fff", textDecoration: "none" }}>
                     Contacto
                   </NavLink>
-                </li>        
+                </li>   
+                <li style={{ margin: "0 10px" }}>
+                  <button 
+                      className="px-4 bg-third text-white rounded-lg hover:bg-third text-xs"
+                    >
+                      <NavLink to="/Login" style={{ color: "#fff", textDecoration: "none" }}>
+                        Ingresar
+                      </NavLink>
+                    </button>
+                </li>                          
               </ul>
             </nav>
         </div>

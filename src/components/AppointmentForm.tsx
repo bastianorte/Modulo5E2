@@ -1,32 +1,47 @@
 import { useEffect, useRef, useState } from 'react'
 
-export default function AppointmentForm({setPacientes,doctores}) {
 
-  const [paciente, setPaciente] = useState({nombre:"",doctor:"",fecha:"",hora:""});    
+interface Doctor {
+  id: string;
+  nombre: string;
+}
+interface AppointmentFormProps {
+  setPacientes:(key: string, value: string | number) => void;
+  doctores:Doctor[];
+}
+
+interface Paciente {
+  nombre: string;
+  doctor: string;
+  fecha: string;
+  hora: string;
+}
+
+const AppointmentForm: React.FC<AppointmentFormProps> = ({setPacientes,doctores}) => {
+
+  const [paciente, setPaciente] = useState<Paciente>({ nombre: "", doctor: "", fecha: "", hora: "" }); 
 
 
     // Referencias para manejar el enfoque
-    const nombreRef = useRef(null);
-    const fechaRef = useRef(null);
-    const horaRef = useRef(null);
-    const doctorRef = useRef(null);      
+    const nombreRef = useRef<HTMLInputElement>(null);
+    const fechaRef = useRef<HTMLInputElement>(null);
+    const horaRef = useRef<HTMLInputElement>(null);
+    const doctorRef = useRef<HTMLInputElement>(null);
 
 
   // Función que maneja el envío del formulario
-  const manejarEnvio = (e) => {
-    e.preventDefault(); // Evitar recarga de la página
-
-
-setPacientes(pacientes=>[...pacientes,paciente])
-
-setPaciente ({nombre:"",doctor:"",fecha:"",hora:""})
-
+  const manejarEnvio = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setPacientes((pacientes) => [...pacientes, paciente]);
+    setPaciente({ nombre: "", doctor: "", fecha: "", hora: "" });
   };
 
   // Función para enfocar el siguiente campo
-  const enfocarCampo = (campoRef) => {
-    campoRef.current.focus();
-  };  
+  const enfocarCampo = (campoRef: React.RefObject<HTMLInputElement | HTMLSelectElement>) => {
+    if (campoRef.current) {
+      campoRef.current.focus();
+    }
+  }; 
 
   useEffect(() => {
     // Enfocar el campo de nombre al cambiar de vista
@@ -131,3 +146,4 @@ setPaciente ({nombre:"",doctor:"",fecha:"",hora:""})
   )
 }
 
+export default AppointmentForm;

@@ -17,7 +17,7 @@ interface Doctor {
 
 
 const ApiDoctores = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Doctor[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 

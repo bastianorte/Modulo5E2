@@ -1,9 +1,17 @@
 
-import { Card, Typography } from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
 
 const TABLE_HEAD = ["Paciente", "Doctor", "Fecha", "Hora", ""];
 
-const CitaConfirmada = ({pacientes}) => {
+
+interface Pacientes {
+  nombre: string;
+  fecha: number;
+  doctor: string;
+  hora: number;
+}
+
+const CitaConfirmada: React.FC<Pacientes> = ({pacientes}) => {
 console.log(pacientes)
   return (
     <div>
@@ -30,7 +38,7 @@ console.log(pacientes)
           </tr>
         </thead>
         <tbody>
-          {pacientes.map(( paciente,indice) => (
+          {pacientes.map(( paciente,indice:number) => (
             <tr key={indice} className="even:bg-blue-gray-50/50">
               <td className="p-4">
                 <Typography variant="small" color="blue-gray" className="font-normal">
