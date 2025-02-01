@@ -1,33 +1,23 @@
-import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-const MainLayout = ({ children }) => {
+// Definir tipos para las props del componente
+interface MainLayoutProps {
+  children: React.ReactNode; // El tipo para el contenido dinámico que se pasa entre las etiquetas <MainLayout>
+}
+
+
+const MainLayout = ({ children }: MainLayoutProps) => {
   const { user, logout } = useAuth();
 
   return (
-    <div>
-      <header>
-        <nav>
-          <ul>
-            <li><Link to="/">Inicio</Link></li>
-            {!user && <li><Link to="/login">Login</Link></li>}
-            {user?.role === "admin" && <li><Link to="/dashboard">Dashboard</Link></li>}
-            {user && <li><Link to="/search-flights">Buscar Vuelos</Link></li>}
-            {user?.role === "admin" && <li><Link to="/vulnerabilities">Vulnerabilidades</Link></li>}
+    <div className="text-center">
+
+      <main>{children}</main>
             {user && (
-              <li>
-                <button onClick={logout} style={{ background: "none", border: "none", cursor: "pointer" }}>
+                <button onClick={logout} className="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-auto mt-2 mb-10">
                   Cerrar Sesión
                 </button>
-              </li>
             )}
-          </ul>
-        </nav>
-      </header>
-      <main>{children}</main>
-      <footer>
-        <p>&copy; 2025 SafeApp</p>
-      </footer>
     </div>
   );
 };
