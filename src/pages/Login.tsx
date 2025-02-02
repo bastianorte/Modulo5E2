@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Header from "../components/Header";
 import MainLayout from "../layouts/MainLayout";
+import DOMPurify from 'dompurify';
 
 
 
@@ -14,6 +15,9 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
+
+    const sanitizedComment = DOMPurify.sanitize(username);
+    setUsername(sanitizedComment);
 
     if (username === "admin" && password === "password") {
       login("admin");
@@ -31,9 +35,15 @@ const Login = () => {
             <Header>
               <h2>Iniciar Sesión</h2>
             </Header>  
-            {user && (
-                    <h3 className="my-6">ya ingresaste como user</h3>
-              )}
+            {user ? (
+  user ? (
+    <h3 className="my-6">Has ingresado como admin</h3>
+  ) : (
+    <h3 className="my-6">Has ingresado como user</h3>
+  )
+) : (
+  <h3>No has ingresado</h3>
+)}
       <form onSubmit={handleLogin} className="mx-auto container">
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 w-80 mx-auto">
           <div className="sm:col-span-2">
