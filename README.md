@@ -10,12 +10,12 @@ el acceso a áreas específicas de la aplicación.
 ## 📁 Accesos de Usuario
 
 #### Administrador (admin):
--        Usuario: admin
--        Contraseña: password
+        Usuario: admin
+        Contraseña: password
 
 #### Usuario (user):
--        Usuario: user
--        Contraseña: password
+        Usuario: user
+        Contraseña: password
 
 
 ## 📁 Proyecto
