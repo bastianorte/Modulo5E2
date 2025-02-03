@@ -7,7 +7,7 @@ asegurarán las rutas de la aplicación y protegerán el consumo de APIs utiliza
 JWT. Además, se implementará seguridad por roles y autenticación de usuarios para restringir
 el acceso a áreas específicas de la aplicación.
 
-## 📁 Accesos de Usuario
+## :no_entry: Accesos de Usuario
 
 #### Administrador (admin):
         Usuario: admin
